@@ -1,5 +1,5 @@
 # package.txt (Simple list of packages)
-
+google-generativeai
 streamlit
 pandas
 matplotlib
