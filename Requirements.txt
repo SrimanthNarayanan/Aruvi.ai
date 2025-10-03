@@ -7,7 +7,7 @@ matplotlib
 seaborn
 requests
 
-# --- AI and RAG System ---
+google-genai
 google-genai
 chromadb
 sentence-transformers
