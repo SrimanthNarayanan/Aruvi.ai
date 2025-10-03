@@ -7,7 +7,7 @@ matplotlib
 seaborn
 requests
 
-google-genai
+google-generativeai
 google-genai
 chromadb
 sentence-transformers
