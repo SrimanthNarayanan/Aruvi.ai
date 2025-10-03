@@ -1,0 +1,26 @@
+# requirements.txt
+
+# --- Core App and Visualization ---
+streamlit
+pandas
+matplotlib
+seaborn
+requests
+
+# --- AI and RAG System ---
+google-genai
+chromadb
+sentence-transformers
+pypdf               # For handling PDF files (PyPDF2)
+python-docx         # For handling DOCX files (docx)
+langchain           # For text splitting (RecursiveCharacterTextSplitter)
+
+# --- Database Connectors ---
+pyodbc              # SQL Server / Generic ODBC
+mysql-connector-python # MySQL
+psycopg2-binary     # PostgreSQL (Use binary for easier install)
+snowflake-connector-python # Snowflake
+
+# --- Reporting and Email ---
+markdown            # For converting markdown to HTML
+xhtml2pdf           # For generating PDF reports
