@@ -1,3 +1,0 @@
-# packages.txt - System packages only
-build-essential
-python3-dev
