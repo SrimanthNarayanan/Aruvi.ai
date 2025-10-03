@@ -1,0 +1,19 @@
+# package.txt (Simple list of packages)
+
+streamlit
+pandas
+matplotlib
+seaborn
+requests
+google-genai
+chromadb
+sentence-transformers
+pypdf
+python-docx
+langchain
+pyodbc
+mysql-connector-python
+psycopg2-binary
+snowflake-connector-python
+markdown
+xhtml2pdf
