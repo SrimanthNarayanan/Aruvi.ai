@@ -1,4 +1,20 @@
+streamlit
 pandas
+matplotlib
+seaborn
+requests
 google-generativeai
+chromadb
+sentence-transformers
+pypdf
+python-docx
+langchain
+langchain-community
+pyodbc
+mysql-connector-python
+psycopg2-binary
+snowflake-connector-python
+markdown
+xhtml2pdf
 
 
