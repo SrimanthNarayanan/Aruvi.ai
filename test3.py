@@ -1023,6 +1023,12 @@ def display_mode_selection():
             safe_rerun()
 
 def display_database_login():
+     # --- ADD THIS BUTTON HERE ---
+    if st.button("⬅️ Back to Mode Selection", key="back_to_home_from_db_login"):
+        # Reset app_mode to None to show the home screen
+        st.session_state.app_mode = None
+        safe_rerun()
+        
     st.title("🔗 Database Connector")
     st.markdown("Use this interface to securely connect to your database for AI-powered analysis.")
 
@@ -1062,6 +1068,8 @@ def display_database_login():
         # The new submit button that only triggers a rerun ON CLICK
         submitted = st.form_submit_button("Connect to Database")
     # --- END: FIX BY USING st.form ---
+
+   
     
     # Logic runs only on submit, preventing intermediate reruns
     if submitted:
@@ -1526,4 +1534,5 @@ def main():
         
     
 if __name__ == "__main__":
+
     main()
