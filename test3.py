@@ -1249,7 +1249,31 @@ def display_database_analysis_page():
         else:
             st.info("Visualization code not generated (e.g., due to limited data columns).")
             
-    
+        # --- ADDED: Download Buttons for Analysis ---
+    if insight:
+        pdf_bytes_doc = create_html_pdf(insight, st.session_state.last_question)
+        txt_bytes_doc = insight.encode('utf-8')
+
+        st.markdown("### Download Analysis")
+        col_pdf_doc, col_txt_doc = st.columns(2)
+
+        with col_pdf_doc:
+            st.download_button(
+                label="⬇️ Download Analysis as PDF Report",
+                data=pdf_bytes_doc,
+                file_name=f"doc_analysis_report_{time.strftime('%Y%m%d%H%M%S')}.pdf",
+                mime="application/pdf",
+                use_container_width=True
+            )
+
+        with col_txt_doc:
+            st.download_button(
+                label="⬇️ Download Analysis as Text",
+                data=txt_bytes_doc,
+                file_name=f"doc_analysis_report_{time.strftime('%Y%m%d%H%M%S')}.txt",
+                mime="text/plain",
+                use_container_width=True
+            )
 
     # --- Email Results Section ---
     if insight:
@@ -1536,3 +1560,4 @@ def main():
 if __name__ == "__main__":
 
     main()
+
