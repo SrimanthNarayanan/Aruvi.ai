@@ -13,3 +13,7 @@ psycopg2-binary>=2.9.0
 snowflake-connector-python>=3.0.0
 markdown>=3.4.0
 xhtml2pdf>=0.2.12
+matplotlib
+seaborn
+requests
+
