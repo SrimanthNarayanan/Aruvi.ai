@@ -1477,66 +1477,66 @@ def display_document_analysis_page():
         # --- END ADDED ---
         
         if analysis:
-        st.markdown("---")
-        st.markdown("## 📧 Share Report")
-
-        # Check if email already sent
-        if st.session_state.email_sent:
-            st.info("📧 Email sent successfully! You can send another email if needed.")
-            # Use on_click for simple state reset
-            st.button("🔄 Send Another Email", key="send_another_email", on_click=reset_email_state)
-        else:
-            # --- START: FIX BY USING st.form for Email ---
-            with st.form(key="db_email_form"):
-                col_email, col_format = st.columns([0.6, 0.4])
-                with col_email:
-                    recipient_email = st.text_input("Recipient Email", value=st.session_state.recipient_email or "", key="f_db_email")
-                with col_format:
-                    email_format = st.selectbox("Attachment Format", ["PDF Report", "CSV Data", "Excel Data"], key="f_db_email_format")
-                    
-                email_message = st.text_area("Email Message (Optional)", value=st.session_state.email_message or "Please find the attached data analysis report.", key="f_db_email_message")
-                
-                # The submit button
-                email_submitted = st.form_submit_button("Send Analysis via Email")
-
-            if email_submitted:
-                # Store inputs in session state
-                st.session_state.recipient_email = recipient_email
-                st.session_state.email_message = email_message
-                st.session_state.email_format = email_format
-                
-                if not recipient_email or "@" not in recipient_email:
-                    st.error("Please enter a valid recipient email address.")
-                    safe_rerun()
-                else:
-                    pdf_bytes_email, csv_bytes, excel_bytes = None, None, None
-                    
-                    if email_format == "PDF Report":
-                        pdf_bytes_email = create_html_pdf(analysis, question)
-                    elif email_format == "CSV Data":
-                        csv_bytes = df.to_csv(index=False).encode('utf-8')
-                    elif email_format == "Excel Data":
-                        excel_buffer = BytesIO()
-                        df.to_excel(excel_buffer, index=False)
-                        excel_bytes = excel_buffer.getvalue()
+            st.markdown("---")
+            st.markdown("## 📧 Share Report")
+    
+            # Check if email already sent
+            if st.session_state.email_sent:
+                st.info("📧 Email sent successfully! You can send another email if needed.")
+                # Use on_click for simple state reset
+                st.button("🔄 Send Another Email", key="send_another_email", on_click=reset_email_state)
+            else:
+                # --- START: FIX BY USING st.form for Email ---
+                with st.form(key="db_email_form"):
+                    col_email, col_format = st.columns([0.6, 0.4])
+                    with col_email:
+                        recipient_email = st.text_input("Recipient Email", value=st.session_state.recipient_email or "", key="f_db_email")
+                    with col_format:
+                        email_format = st.selectbox("Attachment Format", ["PDF Report", "CSV Data", "Excel Data"], key="f_db_email_format")
                         
-                    with st.spinner(f"Sending email to {recipient_email}..."):
-                        success = send_analysis_email(
-                            recipient_email=recipient_email,
-                            subject=f"AI Data Analysis Report: {st.session_state.last_question}",
-                            message=email_message.replace(chr(10), '<br>'),
-                            pdf_bytes=pdf_bytes_email,
-                            csv_bytes=csv_bytes,
-                            excel_bytes=excel_bytes
-                        )
-                        
-                    if success:
-                        st.session_state.email_sent = True
-                        st.success("Email sent successfully!")
+                    email_message = st.text_area("Email Message (Optional)", value=st.session_state.email_message or "Please find the attached data analysis report.", key="f_db_email_message")
+                    
+                    # The submit button
+                    email_submitted = st.form_submit_button("Send Analysis via Email")
+    
+                if email_submitted:
+                    # Store inputs in session state
+                    st.session_state.recipient_email = recipient_email
+                    st.session_state.email_message = email_message
+                    st.session_state.email_format = email_format
+                    
+                    if not recipient_email or "@" not in recipient_email:
+                        st.error("Please enter a valid recipient email address.")
+                        safe_rerun()
                     else:
-                        st.error("Failed to send email. Check API credentials and logs.")
-                    
-                    safe_rerun()
+                        pdf_bytes_email, csv_bytes, excel_bytes = None, None, None
+                        
+                        if email_format == "PDF Report":
+                            pdf_bytes_email = create_html_pdf(analysis, question)
+                        elif email_format == "CSV Data":
+                            csv_bytes = df.to_csv(index=False).encode('utf-8')
+                        elif email_format == "Excel Data":
+                            excel_buffer = BytesIO()
+                            df.to_excel(excel_buffer, index=False)
+                            excel_bytes = excel_buffer.getvalue()
+                            
+                        with st.spinner(f"Sending email to {recipient_email}..."):
+                            success = send_analysis_email(
+                                recipient_email=recipient_email,
+                                subject=f"AI Data Analysis Report: {st.session_state.last_question}",
+                                message=email_message.replace(chr(10), '<br>'),
+                                pdf_bytes=pdf_bytes_email,
+                                csv_bytes=csv_bytes,
+                                excel_bytes=excel_bytes
+                            )
+                            
+                        if success:
+                            st.session_state.email_sent = True
+                            st.success("Email sent successfully!")
+                        else:
+                            st.error("Failed to send email. Check API credentials and logs.")
+                        
+                        safe_rerun()
             # --- END: FIX BY USING st.form for Email ---
 
     
@@ -1574,6 +1574,7 @@ def main():
 if __name__ == "__main__":
 
     main()
+
 
 
 
