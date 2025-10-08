@@ -1023,11 +1023,9 @@ def display_mode_selection():
             safe_rerun()
 
 def display_database_login():
-     # --- ADD THIS BUTTON HERE ---
-    if st.button("⬅️ Back to Mode Selection", key="back_to_home_from_db_login"):
-        # Reset app_mode to None to show the home screen
-        st.session_state.app_mode = None
-        safe_rerun()
+    # --- ADD THIS BUTTON HERE ---
+    st.sidebar.button("🏠 Back to Home", on_click=lambda: st.session_state.clear(), use_container_width=True)
+
         
     st.title("🔗 Database Connector")
     st.markdown("Use this interface to securely connect to your database for AI-powered analysis.")
@@ -1560,4 +1558,5 @@ def main():
 if __name__ == "__main__":
 
     main()
+
 
