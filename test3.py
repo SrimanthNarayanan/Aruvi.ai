@@ -1445,7 +1445,7 @@ def display_document_analysis_page():
     # --- Display Results ---
     analysis = st.session_state.doc_analysis_results.get('analysis')
     question = st.session_state.doc_analysis_results.get('question')
-    df = 
+    
     
     if analysis:
         st.markdown(f"## 🔍 Analysis for: *{question}*")
@@ -1575,6 +1575,7 @@ def main():
 if __name__ == "__main__":
 
     main()
+
 
 
 
