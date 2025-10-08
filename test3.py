@@ -1445,6 +1445,7 @@ def display_document_analysis_page():
     # --- Display Results ---
     analysis = st.session_state.doc_analysis_results.get('analysis')
     question = st.session_state.doc_analysis_results.get('question')
+    df = 
     
     if analysis:
         st.markdown(f"## 🔍 Analysis for: *{question}*")
@@ -1492,7 +1493,7 @@ def display_document_analysis_page():
                     with col_email:
                         recipient_email = st.text_input("Recipient Email", value=st.session_state.recipient_email or "", key="f_db_email")
                     with col_format:
-                        email_format = st.selectbox("Attachment Format", ["PDF Report", "CSV Data", "Excel Data"], key="f_db_email_format")
+                        email_format = st.selectbox("Attachment Format", ["PDF Report"], key="f_db_email_format")
                         
                     email_message = st.text_area("Email Message (Optional)", value=st.session_state.email_message or "Please find the attached data analysis report.", key="f_db_email_message")
                     
@@ -1574,6 +1575,7 @@ def main():
 if __name__ == "__main__":
 
     main()
+
 
 
 
