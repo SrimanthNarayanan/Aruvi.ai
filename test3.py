@@ -1011,14 +1011,14 @@ def display_mode_selection():
     with col1:
         # Retain custom style with explicit button for reliability
         st.markdown('<div class="mode-card" style="margin-bottom: 0.5rem;"><h2>🌐 Database Analysis</h2><p>Connect to a SQL database and ask business questions in plain English.</p></div>', unsafe_allow_html=True)
-        if st.button("Go to Database Connector", key="select_db", use_container_width=True):
+        if st.button("Click Here To Connect Database", key="select_db", use_container_width=True):
             st.session_state.app_mode = "db_analysis"
             safe_rerun()
             
     with col2:
         # Retain custom style with explicit button for reliability
         st.markdown('<div class="mode-card" style="margin-bottom: 0.5rem;"><h2>📄 Document Analysis </h2><p>Upload documents (PDFs, CSVs, etc.) and query them using AI.</p></div>', unsafe_allow_html=True)
-        if st.button("Go to Document Analysis Hub", key="select_doc", use_container_width=True):
+        if st.button("Clck Here to Analyze Document", key="select_doc", use_container_width=True):
             st.session_state.app_mode = "doc_analysis"
             safe_rerun()
 
@@ -1575,6 +1575,7 @@ def main():
 if __name__ == "__main__":
 
     main()
+
 
 
 
