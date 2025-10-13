@@ -94,7 +94,7 @@ st.markdown("""
         margin: 1rem 0;
     }
     .mode-card:hover {
-        transform: translateY(-5px);
+        
     }
     .vector-stats {
         background: linear-gradient(135deg, #a78bfa 0%, #7e22ce 100%);
@@ -1575,6 +1575,7 @@ def main():
 if __name__ == "__main__":
 
     main()
+
 
 
 
