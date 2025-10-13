@@ -1381,8 +1381,8 @@ def display_document_analysis_page():
         # --- START: FIX BY USING st.form for RAG Upload ---
         with st.form(key="doc_rag_form", clear_on_submit=True):
             uploaded_files = st.file_uploader(
-                "Upload documents for analysis (PDF, DOCX, CSV, XLSX, JSON, TXT)",
-                type=['pdf', 'docx', 'csv', 'xlsx', 'json', 'txt'],
+                "Upload documents for analysis (PDF, DOCX, CSV, XLSX, TXT)",
+                type=['pdf', 'docx', 'csv', 'xlsx', 'txt'],
                 accept_multiple_files=True,
                 key="doc_rag_uploader"
             )
@@ -1576,6 +1576,7 @@ def main():
 if __name__ == "__main__":
 
     main()
+
 
 
 
