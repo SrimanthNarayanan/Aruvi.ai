@@ -390,8 +390,8 @@ class VectorRAGSystem:
     def extract_text_from_json(self, json_file):
         """Extract text from JSON file"""
         try:
-            import json
-            data = json.load(json_file)
+            import json5
+            data = json5.load(json_file)
             
             def flatten_json(data, parent_key='', separator='.'):
                 """Flatten JSON structure"""
@@ -1382,7 +1382,7 @@ def display_document_analysis_page():
         with st.form(key="doc_rag_form", clear_on_submit=True):
             uploaded_files = st.file_uploader(
                 "Upload documents for analysis (PDF, DOCX, CSV, XLSX, TXT)",
-                type=['pdf', 'docx', 'csv', 'xlsx', 'txt'],
+                type=['pdf', 'docx', 'csv', 'xlsx', 'json','txt'],
                 accept_multiple_files=True,
                 key="doc_rag_uploader"
             )
@@ -1576,6 +1576,7 @@ def main():
 if __name__ == "__main__":
 
     main()
+
 
 
 
