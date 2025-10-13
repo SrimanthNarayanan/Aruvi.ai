@@ -1024,7 +1024,8 @@ def display_mode_selection():
 
 def display_database_login():
     # --- ADD THIS BUTTON HERE ---
-    st.sidebar.button("🏠 Back to Home", on_click=lambda: st.session_state.clear(), use_container_width=True)
+    st.sidebar.button("🏠 Go to Home Page / Disconnect", key="db_disconnect", 
+                   on_click=st.session_state.clear)
 
         
     st.title("🔗 Database Connector")
@@ -1575,6 +1576,7 @@ def main():
 if __name__ == "__main__":
 
     main()
+
 
 
 
