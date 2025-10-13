@@ -386,122 +386,6 @@ class VectorRAGSystem:
         except Exception as e:
             st.error(f"❌ DOCX file reading failed: {e}")
             return None
-
-    def extract_text_from_json(self, json_file):
-        """Extract text from JSON file"""
-        try:
-            # 1. Import json5 instead of json
-            import json5 
-            
-            # 2.  Use json5.load() which is more forgiving
-            data = json5.load(json_file)
-            
-            # --- Flattening logic ---
-            def flatten_json(data, parent_key='', separator='.'):
-                items = []
-                if isinstance(data, dict):
-                    for k, v in data.items():
-                        new_key = f"{parent_key}{separator}{k}" if parent_key else k
-                        if isinstance(v, (dict, list)):
-                            items.extend(flatten_json(v, new_key, separator=separator).items())
-                        else:
-                            items.append((new_key, str(v)))
-                elif isinstance(data, list):
-                    for i, v in enumerate(data):
-                        new_key = f"{parent_key}{separator}{i}" if parent_key else str(i)
-                        if isinstance(v, (dict, list)):
-                            items.extend(flatten_json(v, new_key, separator=separator).items())
-                        else:
-                            items.append((new_key, str(v)))
-                return dict(items)
-            
-            flattened = flatten_json(data)
-            return "\n".join([f"{k}: {v}" for k, v in flattened.items()])
-        
-        # 3. IMPROVEMENT: Catch the specific json5 error for clarity
-        except json5.Json5DecodeError as e:
-            st.error(f"❌ JSON file is severely malformed (JSON5 Error): {e}")
-            return None
-        except Exception as e:
-            st.error(f"❌ JSON file reading failed: {e}")
-            return None
-            
-            def process_document(self, uploaded_file):
-                """Process uploaded document and store in vector database"""
-                try:
-                    # Extract text based on file type
-                    file_extension = uploaded_file.name.split('.')[-1].lower()
-                    text_content = None
-                    
-                    if file_extension == 'pdf':
-                        text_content = self.extract_text_from_pdf(uploaded_file)
-                    elif file_extension == 'txt':
-                        text_content = self.extract_text_from_txt(uploaded_file)
-                    elif file_extension == 'csv':
-                        text_content = self.extract_text_from_csv(uploaded_file)
-                    elif file_extension in ['xlsx', 'xls']:
-                        text_content = self.extract_text_from_excel(uploaded_file)
-                    elif file_extension == 'docx':
-                        text_content = self.extract_text_from_docx(uploaded_file)
-                    elif file_extension == 'json':
-                        text_content = self.extract_text_from_json(uploaded_file)
-                    else:
-                        return {
-                            "status": "error",
-                            "message": f"Unsupported file type: {file_extension}"
-                        }
-                    
-                    if not text_content:
-                        return {
-                            "status": "error",
-                            "message": "Could not extract text from document"
-                        }
-                    
-                    # Split text into chunks
-                    chunks = self.text_splitter.split_text(text_content)
-                    
-                    # Generate embeddings and store in vector database
-                    embeddings = self.embeddings.encode(chunks).tolist()
-                    
-                    # Prepare documents for storage
-                    documents = []
-                    metadatas = []
-                    ids = []
-                    
-                    for i, (chunk, embedding) in enumerate(zip(chunks, embeddings)):
-                        documents.append(chunk)
-                        metadatas.append({
-                            "filename": uploaded_file.name,
-                            "chunk_index": i,
-                            "file_type": file_extension,
-                            "file_size": uploaded_file.size,
-                            "total_chunks": len(chunks)
-                        })
-                        ids.append(f"{uploaded_file.name}_chunk_{i}")
-                    
-                    # Add to vector store
-                    self.collection.add(
-                        embeddings=embeddings,
-                        documents=documents,
-                        metadatas=metadatas,
-                        ids=ids
-                    )
-                    
-                    return {
-                        "status": "success",
-                        "message": f"Successfully processed {uploaded_file.name}",
-                        "filename": uploaded_file.name,
-                        "chunks_added": len(chunks),
-                        "file_type": file_extension,
-                        "file_size": uploaded_file.size,
-                        "total_chunks": len(chunks)
-                    }
-                    
-                except Exception as e:
-                    return {
-                        "status": "error",
-                        "message": f"Document processing failed: {str(e)}"
-                    }
     
     def search_documents(self, query: str, n_results: int = 5):
         """Search for relevant document chunks"""
@@ -1583,6 +1467,7 @@ def main():
 if __name__ == "__main__":
 
     main()
+
 
 
 
