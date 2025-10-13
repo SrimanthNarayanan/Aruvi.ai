@@ -1109,8 +1109,8 @@ def display_database_analysis_page():
         safe_rerun()
     
     # EXISTING: Disconnect/Home button (modified text)
-    st.sidebar.button("🏠 Go to Home Page / Disconnect", key="db_disconnect", 
-                       on_click=lambda: (st.session_state.clear(), safe_rerun()))
+     st.sidebar.button("🏠 Go to Home Page", key="doc_disconnect", 
+                   on_click=st.session_state.clear)
     
     st.markdown('***')
     
@@ -1576,6 +1576,7 @@ def main():
 if __name__ == "__main__":
 
     main()
+
 
 
 
