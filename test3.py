@@ -94,7 +94,7 @@ st.markdown("""
         margin: 1rem 0;
     }
     .mode-card:hover {
-        transform: translateY(-5px);
+        
     }
     .vector-stats {
         background: linear-gradient(135deg, #a78bfa 0%, #7e22ce 100%);
@@ -1024,7 +1024,8 @@ def display_mode_selection():
 
 def display_database_login():
     # --- ADD THIS BUTTON HERE ---
-    st.sidebar.button("🏠 Back to Home", on_click=lambda: st.session_state.clear(), use_container_width=True)
+    st.sidebar.button("🏠 Go to Home Page / Disconnect", key="db_disconnect", 
+                   on_click=st.session_state.clear)
 
         
     st.title("🔗 Database Connector")
@@ -1109,7 +1110,7 @@ def display_database_analysis_page():
     
     # EXISTING: Disconnect/Home button (modified text)
     st.sidebar.button("🏠 Go to Home Page / Disconnect", key="db_disconnect", 
-                       on_click=lambda: (st.session_state.clear(), safe_rerun()))
+                   on_click=st.session_state.clear)
     
     st.markdown('***')
     
@@ -1120,8 +1121,8 @@ def display_database_analysis_page():
         # --- START: FIX BY USING st.form for RAG Upload ---
         with st.form(key="db_rag_form", clear_on_submit=True):
             uploaded_files = st.file_uploader(
-                "Upload documents for context (PDF, DOCX, CSV, XLSX, JSON, TXT)", 
-                type=['pdf', 'docx', 'csv', 'xlsx', 'json', 'txt'], 
+                "Upload documents for context (PDF, DOCX, CSV, XLSX,TXT)", 
+                type=['pdf', 'docx', 'csv', 'xlsx', 'txt'], 
                 accept_multiple_files=True,
                 key="db_rag_uploader"
             )
@@ -1370,8 +1371,8 @@ def display_document_analysis_page():
         safe_rerun()
         
     # EXISTING: Home button (modified text)
-    st.sidebar.button("🏠 Go to Home Page", key="doc_disconnect", 
-                       on_click=lambda: (st.session_state.clear(), safe_rerun()))
+    st.sidebar.button("🏠 Go to Home Page / Disconnect", key="db_disconnect", 
+                   on_click=st.session_state.clear)
     
     # --- Vector Database Management ---
     with st.expander(" Upload Documents For Analysis"):
@@ -1575,6 +1576,7 @@ def main():
 if __name__ == "__main__":
 
     main()
+
 
 
 
