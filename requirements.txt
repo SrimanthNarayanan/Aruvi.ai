@@ -17,3 +17,5 @@ matplotlib
 seaborn
 requests
 PyPDF2
+# Excel Reading
+openpyxl
