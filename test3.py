@@ -1370,8 +1370,8 @@ def display_document_analysis_page():
         safe_rerun()
         
     # EXISTING: Home button (modified text)
-    st.sidebar.button("🏠 Go to Home Page", key="doc_disconnect", 
-                       on_click=lambda: (st.session_state.clear(), safe_rerun()))
+    st.sidebar.button("🏠 Go to Home Page / Disconnect", key="db_disconnect", 
+                   on_click=st.session_state.clear)
     
     # --- Vector Database Management ---
     with st.expander(" Upload Documents For Analysis"):
@@ -1575,6 +1575,7 @@ def main():
 if __name__ == "__main__":
 
     main()
+
 
 
 
