@@ -132,7 +132,7 @@ OUTLOOK_CONFIG = {
     "port": 587,
     
     # Modern Auth Details (needed for Graph API)
-    "sender_email": "Srimanth.Narayanan@analytixhub.ai", # Set your email
+    "sender_email": "Contactus@analytixhub.ai", # Set your email
     "CLIENT_ID": "d8ed44c2-936f-426d-a071-dccd0647ff1d",
     "TENANT_ID": "03a187b1-7692-4998-b9e9-8e8f11252566",
     "CLIENT_SECRET": "nxO8Q~7FTqY5VeMBjGY6BP52KFGpMK8EfJ17UaN-",
@@ -1576,6 +1576,7 @@ def main():
 if __name__ == "__main__":
 
     main()
+
 
 
 
