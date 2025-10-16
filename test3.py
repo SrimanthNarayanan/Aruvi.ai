@@ -938,24 +938,11 @@ def create_html_pdf(html_content: str, question: str) -> bytes:
 
     css_style = """ 
     <style> 
-    @page { size: a4 portrait; margin: 1.5cm; } 
-    body { font-family: "Helvetica", "Arial", sans-serif; font-size: 11pt; line-height: 1.6; color: #333333; margin: 0; padding: 0; } 
-    .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 25px; text-align: center; margin-bottom: 30px; border-radius: 8px; } 
-    .header h1 { font-size: 24pt; margin: 0; font-weight: bold; } 
-    .header h2 { font-size: 16pt; margin: 10px 0 0 0; font-weight: normal; opacity: 0.9; } 
-    .metadata { background-color: #f8fafc; padding: 20px; border-radius: 8px; margin-bottom: 25px; border-left: 4px solid #667eea; } 
-    .metadata strong { color: #1E3A8A; } 
-    .section { margin-bottom: 30px; padding-bottom: 20px; border-bottom: 1px solid #e2e8f0; page-break-inside: avoid; } 
-    .subsection { margin-bottom: 15px; padding-left: 10px; } 
-    h1 { color: #1E3A8A; font-size: 18pt; margin-bottom: 15px; padding-bottom: 8px; border-bottom: 2px solid #667eea; } 
-    h2 { color: #374151; font-size: 14pt; margin: 20px 0 12px 0; background-color: #f1f5f9; padding: 10px 15px; border-radius: 5px; } 
-    h3 { color: #4B5563; font-size: 12pt; margin: 15px 0 8px 0; } 
-    .section-icon { background-color: #667eea; color: white; padding: 4px 8px; border-radius: 4px; font-size: 9pt; font-weight: bold; margin-right: 8px; } 
-    p { margin: 10px 0; text-align: justify; } 
-    ul, ol { margin: 12px 0; }
-    table { width: 100%; border-collapse: collapse; margin-top: 15px; } 
-    th, td { border: 1px solid #ddd; padding: 8px; text-align: left; } 
-    th { background-color: #DBEAFE; font-weight: bold; color: #1E3A8A; }
+    @page { size: a4 portrait; margin: 1.5cm; } body { font-family: 'Helvetica', sans-serif; font-size: 11pt; } h1, 
+        h2 { color: #1E3A8A; } h1 { font-size: 20pt; text-align: center; } h2 { font-size: 14pt; } 
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; } th, 
+        td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+          th { background-color: #DBEAFE; }
     </style> """ 
 
     full_html = f"""
@@ -1576,6 +1563,7 @@ def main():
 if __name__ == "__main__":
 
     main()
+
 
 
 
