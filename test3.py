@@ -163,7 +163,7 @@ def _get_access_token():
         print(f"Token acquisition failed: {e}")
         return None
 
-def _send_email_via_graph_api(access_token, sender_email, recipient_email, subject, message, attachments):
+def _send_email_via_graph_api(access_token, sender_email, recipient_email, subject = 'Analytix Hub Insights', message, attachments):
     """Sends email using Microsoft Graph API 'sendMail' endpoint."""
     if not access_token:
         return False
@@ -1563,6 +1563,7 @@ def main():
 if __name__ == "__main__":
 
     main()
+
 
 
 
