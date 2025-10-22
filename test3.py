@@ -307,11 +307,6 @@ def initialize_components(self):
         
     except Exception as e:
         st.error(f"❌ Failed to initialize RAG system: {e}")
-            
-            
-            
-        except Exception as e:
-            st.error(f"❌ Failed to initialize RAG system: {e}")
     
     def initialize_vector_store(self):
         """Initialize ChromaDB vector store"""
