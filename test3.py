@@ -295,7 +295,7 @@ class VectorRAGSystem:
             # Initialize vector store
             self.initialize_vector_store()
             
-            st.success("✅ Vector RAG system initialized successfully!")
+            
             
         except Exception as e:
             st.error(f"❌ Failed to initialize RAG system: {e}")
@@ -1569,6 +1569,7 @@ def main():
 if __name__ == "__main__":
 
     main()
+
 
 
 
