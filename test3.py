@@ -279,34 +279,34 @@ class VectorRAGSystem:
             self.embeddings = SentenceTransformer('all-MiniLM-L6-v2')
             
             
-def initialize_components(self):
-    """Initialize embeddings and text splitter"""
-    try:
-        # Initialize embeddings
-        from sentence_transformers import SentenceTransformer
-        self.embeddings = SentenceTransformer('all-MiniLM-L6-v2')
-        
-        # Updated import for text splitter
+    def initialize_components(self):
+        """Initialize embeddings and text splitter"""
         try:
-            # Try new import first
-            from langchain_text_splitters import RecursiveCharacterTextSplitter
-        except ImportError:
-            # Fallback to old import
-            from langchain.text_splitter import RecursiveCharacterTextSplitter
-        
-        self.text_splitter = RecursiveCharacterTextSplitter(
-            chunk_size=1000,
-            chunk_overlap=200,
-            length_function=len,
-        )
-        
-        # Initialize vector store
-        self.initialize_vector_store()
-        
-        st.success("✅ Vector RAG system initialized successfully!")
-        
-    except Exception as e:
-        st.error(f"❌ Failed to initialize RAG system: {e}")
+            # Initialize embeddings
+            from sentence_transformers import SentenceTransformer
+            self.embeddings = SentenceTransformer('all-MiniLM-L6-v2')
+            
+            # Updated import for text splitter
+            try:
+                # Try new import first
+                from langchain_text_splitters import RecursiveCharacterTextSplitter
+            except ImportError:
+                # Fallback to old import
+                from langchain.text_splitter import RecursiveCharacterTextSplitter
+            
+            self.text_splitter = RecursiveCharacterTextSplitter(
+                chunk_size=1000,
+                chunk_overlap=200,
+                length_function=len,
+            )
+            
+            # Initialize vector store
+            self.initialize_vector_store()
+            
+            st.success("✅ Vector RAG system initialized successfully!")
+            
+        except Exception as e:
+            st.error(f"❌ Failed to initialize RAG system: {e}")
     
     def initialize_vector_store(self):
         """Initialize ChromaDB vector store"""
@@ -1577,6 +1577,7 @@ def main():
 if __name__ == "__main__":
 
     main()
+
 
 
 
