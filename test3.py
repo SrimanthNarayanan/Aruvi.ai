@@ -270,13 +270,6 @@ class VectorRAGSystem:
         self.embeddings = None
         self.text_splitter = None
         self.initialize_components()
-    
-    def initialize_components(self):
-        """Initialize embeddings and text splitter"""
-        try:
-            # Initialize embeddings
-            from sentence_transformers import SentenceTransformer
-            self.embeddings = SentenceTransformer('all-MiniLM-L6-v2')
             
     def initialize_components(self):
         """Initialize embeddings and text splitter"""
@@ -1576,6 +1569,7 @@ def main():
 if __name__ == "__main__":
 
     main()
+
 
 
 
